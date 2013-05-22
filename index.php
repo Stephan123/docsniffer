@@ -6,7 +6,7 @@
  * @author Stephan Krauss
  * @date 21.05.13
  * @time 21:51
- * 
+ *
  * tool
  */
 
@@ -14,15 +14,15 @@ include_once("define.php");
 
 $datensaetze = false;
 
-class index extends define{
+class index extends define
+{
 
     private $_suchString = null;
     private $_result = array();
     private $_typ = null;
-    private $_farbeMin = null;
-    private $_farbeMax = null;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->_db_connect = mysqli_connect(
             $this->_db_server, $this->_db_user, $this->_db_passwort, $this->_db_datenbank
         );
@@ -37,7 +37,8 @@ class index extends define{
      *
      * @return index
      */
-    public function setSuchstring($suche){
+    public function setSuchstring($suche)
+    {
         $this->_suchString = $suche;
 
         return $this;
@@ -61,29 +62,31 @@ class index extends define{
      *
      * @return $this
      */
-    public function findeDateien(){
+    public function findeDateien()
+    {
 
-        $sql = "SELECT
+        $sql
+            = "SELECT
           bereich,
           datei,
-          MATCH (klassenbeschreibung) AGAINST ('".$this->_suchString."') AS treffer
+          MATCH (klassenbeschreibung) AGAINST ('" . $this->_suchString . "') AS treffer
         FROM
           klassenverwaltung
-        WHERE MATCH (klassenbeschreibung) AGAINST ('".$this->_suchString."')";
+        WHERE MATCH (klassenbeschreibung) AGAINST ('" . $this->_suchString . "')";
 
-        switch($this->_typ){
+        switch ($this->_typ) {
             case 'admin':
                 $sql .= " and bereich = 'admin'";
-            break;
+                break;
             case 'front':
                 $sql .= " and bereich = 'front'";
-            break;
+                break;
             case 'tool':
                 $sql .= " and bereich = 'tool'";
-            break;
+                break;
         }
 
-        if($result = mysqli_query($this->_db_connect, $sql)){
+        if ($result = mysqli_query($this->_db_connect, $sql)) {
             while ($row = mysqli_fetch_assoc($result)) {
                 $this->_result[] = $row;
             }
@@ -97,13 +100,14 @@ class index extends define{
     /**
      * @return array
      */
-    public function getDatensaetze(){
+    public function getDatensaetze()
+    {
 
         return $this->_result;
     }
 }
 
-if(isset($_POST['suche'])){
+if (isset($_POST['suche'])) {
     $suche = new index();
 
     $datensaetze = $suche
@@ -116,27 +120,35 @@ if(isset($_POST['suche'])){
 ?>
 <p>&nbsp;</p>
 <html>
-    <head>
-        <title></title>
-    </head>
-    <body>
-        <table border="1" style="margin-left: 100px;">
-            <tr>
-                <td>Suche: </td>
-                <td><form method="post" action="index.php"><input type="text" name="suche" style="border: 1px solid green;"></td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    &nbsp; Admin: <input type="radio" value="admin" name="typ"> &nbsp; Front: &nbsp; <input type="radio" name="typ" value="front"> &nbsp; Tool:  &nbsp; <input type="radio" name="typ" value="tool"> &nbsp; alles: &nbsp; <input type="radio" name="typ" value="alles" checked="true">
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <input type="submit" name="suchen"></form>
-                </td>
-            </tr>
-        </table>
-    </body>
+<head>
+    <title></title>
+</head>
+<body>
+<table border="1" style="margin-left: 100px;">
+    <tr>
+        <td>Suche:</td>
+        <td>
+            <form method="post" action="index.php"><input type="text" name="suche" style="border: 1px solid green;">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            &nbsp; Admin: <input type="radio" value="admin" name="typ"> &nbsp; Front: &nbsp; <input type="radio"
+                                                                                                    name="typ"
+                                                                                                    value="front">
+            &nbsp; Tool: &nbsp; <input type="radio" name="typ" value="tool"> &nbsp; alles: &nbsp; <input type="radio"
+                                                                                                         name="typ"
+                                                                                                         value="alles"
+                                                                                                         checked="true">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <input type="submit" name="suchen"></form>
+        </td>
+    </tr>
+</table>
+</body>
 </html>
 
 <p>&nbsp;</p>
@@ -148,31 +160,38 @@ if(isset($_POST['suche'])){
         <td>&nbsp; Treffer &nbsp;</td>
         <td>&nbsp; Dokumentation &nbsp; </td>
     </tr>
-<?php
-if(is_array($datensaetze)){
+    <?php
+    if (is_array($datensaetze)) {
 
-    for($i=0; $i < count($datensaetze); $i++){
-        $treffer = $datensaetze[$i]['treffer'] * 10;
+        for ($i = 0; $i < count($datensaetze); $i++) {
+            $treffer = $datensaetze[$i]['treffer'] * 10;
 
-        $datei = substr($datensaetze[$i]['datei'], 0, -4);
+            $datei = substr($datensaetze[$i]['datei'], 0, -4);
 
-        if($datensaetze[$i]['bereich'] == 'front')
-            $dokumentation = "Front_Model_".$datei;
-        elseif($datensaetze[$i]['bereich'] == 'admin')
-            $dokumentation = "Admin_Model_".$datei;
-        elseif($datensaetze[$i]['bereich'] == 'tool')
-            $dokumentation = "nook_".$datei;
-        else
-            $dokumentation = "plugin_".$datei;
+            if ($datensaetze[$i]['bereich'] == 'front') {
+                $dokumentation = "Front_Model_" . $datei;
+            } elseif ($datensaetze[$i]['bereich'] == 'admin') {
+                $dokumentation = "Admin_Model_" . $datei;
+            } elseif ($datensaetze[$i]['bereich'] == 'tool') {
+                $dokumentation = "nook_" . $datei;
+            } else {
+                $dokumentation = "plugin_" . $datei;
+            }
 
-        $farbTreffer = (int) $treffer;
-        $farbTreffer = 255 - ($farbTreffer * 3);
-        if($farbTreffer < 0)
-            $farbTreffer = 0;
+            $farbTreffer = (int)$treffer;
+            $farbTreffer = 255 - ($farbTreffer * 3);
+            if ($farbTreffer < 0) {
+                $farbTreffer = 0;
+            }
 
-        echo "<tr><td>&nbsp; ".$datensaetze[$i]['bereich']." &nbsp;</td><td>&nbsp; ".$datensaetze[$i]['datei']." &nbsp;</td><td style='background-color:rgb(255,".$farbTreffer.",0);'>&nbsp; ".number_format($treffer,2)." % &nbsp;</td><td>&nbsp; <a style='text-decoration: none; color: blue;' href='http://localhost/hob/_docs/class-".$dokumentation.".html' target='_blank'> zur Dokumentation </a> &nbsp;</td></tr> \n";
+            echo "<tr><td>&nbsp; " . $datensaetze[$i]['bereich'] . " &nbsp;</td><td>&nbsp; " . $datensaetze[$i]['datei']
+                . " &nbsp;</td><td style='background-color:rgb(255," . $farbTreffer . ",0);'>&nbsp; " . number_format(
+                $treffer, 2
+            )
+                . " % &nbsp;</td><td>&nbsp; <a style='text-decoration: none; color: blue;' href='http://localhost/hob/_docs/class-"
+                . $dokumentation . ".html' target='_blank'> zur Dokumentation </a> &nbsp;</td></tr> \n";
+        }
     }
-}
 
-?>
+    ?>
 </table>

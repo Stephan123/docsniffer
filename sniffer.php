@@ -5,16 +5,15 @@
  *
  *
 
-    CREATE TABLE `klassenverwaltung` (
-    `id` int(10) NOT NULL AUTO_INCREMENT,
-    `bereich` varchar(50) NOT NULL,
-    `datei` varchar(50) NOT NULL,
-    `klassenbeschreibung` text NOT NULL,
-    `eingetragen` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (`id`),
-    FULLTEXT KEY `volltext` (`klassenbeschreibung`)
-    ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
-
+CREATE TABLE `klassenverwaltung` (
+`id` int(10) NOT NULL AUTO_INCREMENT,
+`bereich` varchar(50) NOT NULL,
+`datei` varchar(50) NOT NULL,
+`klassenbeschreibung` text NOT NULL,
+`eingetragen` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+PRIMARY KEY (`id`),
+FULLTEXT KEY `volltext` (`klassenbeschreibung`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
  *
  * @author  User
  * @date 20.05.13
@@ -186,11 +185,13 @@ class auswertungDocs extends define
 
         $doc = str_replace("'", "", $doc);
 
-        $sql = "insert into klassenverwaltung (bereich, datei, klassenbeschreibung) values('" . $this->_kennung . "','". $this->_file . "','" . $doc . "')";
-        if(mysqli_query($this->_db_connect, $sql))
+        $sql = "insert into klassenverwaltung (bereich, datei, klassenbeschreibung) values('" . $this->_kennung . "','"
+            . $this->_file . "','" . $doc . "')";
+        if (mysqli_query($this->_db_connect, $sql)) {
             $this->_zaehler++;
-        else
-            echo $sql."<hr>";
+        } else {
+            echo $sql . "<hr>";
+        }
 
         return $this;
     }
