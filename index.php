@@ -174,6 +174,16 @@ if (isset($_POST['suche'])) {
             if($datensaetze[$i]['bereich'] == 'plugin')
                 $dokumentation = "Plugin_".$dokumentation;
 
+            if($datensaetze[$i]['bereich'] == 'front'){
+                if(!strstr($dokumentation, 'Front'))
+                    $dokumentation = "Front_Model_".$dokumentation;
+            }
+
+            if($datensaetze[$i]['bereich'] == 'admin'){
+                if(!strstr($dokumentation, 'Admin'))
+                    $dokumentation = "Admin_Model_".$dokumentation;
+            }
+
             $farbTreffer = (int)$treffer;
             $farbTreffer = 255 - ($farbTreffer * 3);
             if ($farbTreffer < 0) {
