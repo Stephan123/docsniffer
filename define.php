@@ -14,6 +14,6 @@ class define
     protected $_db_connect = null;
     protected $_db_server = 'localhost';
     protected $_db_datenbank = 'test';
-    protected $_db_user = 'root';
-    protected $_db_passwort = '';
+    protected $_db_user = 'test';
+    protected $_db_passwort = 'test';
 }

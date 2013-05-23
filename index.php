@@ -166,17 +166,13 @@ if (isset($_POST['suche'])) {
         for ($i = 0; $i < count($datensaetze); $i++) {
             $treffer = $datensaetze[$i]['treffer'] * 10;
 
-            $datei = substr($datensaetze[$i]['datei'], 0, -4);
+            $dokumentation = substr($datensaetze[$i]['datei'], 0, -4);
 
-            if ($datensaetze[$i]['bereich'] == 'front') {
-                $dokumentation = "Front_Model_" . $datei;
-            } elseif ($datensaetze[$i]['bereich'] == 'admin') {
-                $dokumentation = "Admin_Model_" . $datei;
-            } elseif ($datensaetze[$i]['bereich'] == 'tool') {
-                $dokumentation = "nook_" . $datei;
-            } else {
-                $dokumentation = "plugin_" . $datei;
-            }
+            if($datensaetze[$i]['bereich'] == 'tool')
+                $dokumentation = "nook_".$dokumentation;
+
+            if($datensaetze[$i]['bereich'] == 'plugin')
+                $dokumentation = "Plugin_".$dokumentation;
 
             $farbTreffer = (int)$treffer;
             $farbTreffer = 255 - ($farbTreffer * 3);
