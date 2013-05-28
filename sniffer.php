@@ -5,15 +5,19 @@
  *
  *
 
+Create Table
+
 CREATE TABLE `klassenverwaltung` (
 `id` int(10) NOT NULL AUTO_INCREMENT,
 `bereich` varchar(50) NOT NULL,
 `datei` varchar(50) NOT NULL,
 `klassenbeschreibung` text NOT NULL,
+`geaendert` datetime NOT NULL,
 `eingetragen` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 PRIMARY KEY (`id`),
 FULLTEXT KEY `volltext` (`klassenbeschreibung`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
+
  *
  * @author  User
  * @date 20.05.13
@@ -33,6 +37,8 @@ class auswertungDocs extends define
     private $_kennung = null;
     private $_tokens = array();
     private $_docs = array();
+    private $_source = null;
+    private $_aenderungDatum = null;
 
     private $_zaehler = 0;
 
@@ -114,6 +120,10 @@ class auswertungDocs extends define
         $source = file_get_contents($this->_dirName . "/" . $this->_file);
         $this->_tokens = token_get_all($source);
 
+        $this->_aenderungDatum = date('Y-m-d H:i:s', filemtime($this->_dirName . "/" . $this->_file));
+
+        $this->_source = $source;
+
         return $this;
     }
 
@@ -126,10 +136,23 @@ class auswertungDocs extends define
     {
 
         $this->_docs = array();
+        $klassenName = "";
+
+        // Klassenname
+        preg_match('/class\s+(\w+)(.*)?\{/', $this->_source, $klassenTreffer);
+
+
+        if(is_array($klassenTreffer)){
+            if(isset($klassenTreffer[1])){
+                $klassenName = str_replace("_"," ",$klassenTreffer[1]);
+            }
+        }
 
         foreach ($this->_tokens as $token) {
+
+            // Php Docs
             if ($token[0] == T_DOC_COMMENT) {
-                $this->_docs[] = $token[1];
+                $this->_docs[] = $klassenName." ".$token[1];
             }
         }
 
@@ -185,8 +208,7 @@ class auswertungDocs extends define
 
         $doc = str_replace("'", "", $doc);
 
-        $sql = "insert into klassenverwaltung (bereich, datei, klassenbeschreibung) values('" . $this->_kennung . "','"
-            . $this->_file . "','" . $doc . "')";
+        $sql = "insert into klassenverwaltung (bereich, datei, klassenbeschreibung, geaendert) values('" . $this->_kennung . "','". $this->_file . "','" . $doc . "', '".$this->_aenderungDatum."')";
         if (mysqli_query($this->_db_connect, $sql)) {
             $this->_zaehler++;
         } else {
