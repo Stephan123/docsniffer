@@ -86,7 +86,7 @@ class index extends define
                 $sql .= " and bereich = 'tool'";
             break;
             case 'heute':
-                $sql .= " and geaendert like '".date("Y-m-d")."%'";
+                $sql = "select bereich, datei, geaendert from klassenverwaltung where geaendert like '".date("Y-m-d")."%'";
             break;
         }
 
@@ -177,7 +177,11 @@ else{
     if (is_array($datensaetze)) {
 
         for ($i = 0; $i < count($datensaetze); $i++) {
-            $treffer = $datensaetze[$i]['treffer'] * 10;
+
+            if(array_key_exists('treffer', $datensaetze[$i]))
+                $treffer = $datensaetze[$i]['treffer'] * 10;
+            else
+                $treffer = 1;
 
             $datei = substr($datensaetze[$i]['datei'], 0, -4);
 
@@ -191,7 +195,8 @@ else{
                 $dokumentation = "plugin_" . $datei;
             }
 
-            $farbTreffer = (int)$treffer;
+            $farbTreffer = (int) $treffer;
+
             $farbTreffer = 255 - ($farbTreffer * 3);
             if ($farbTreffer < 0) {
                 $farbTreffer = 0;
