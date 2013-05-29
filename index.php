@@ -69,7 +69,8 @@ class index extends define
             = "SELECT
           bereich,
           datei,
-          MATCH (klassenbeschreibung) AGAINST ('" . $this->_suchString . "') AS treffer
+          MATCH (klassenbeschreibung) AGAINST ('" . $this->_suchString . "') AS treffer,
+          geaendert
         FROM
           klassenverwaltung
         WHERE MATCH (klassenbeschreibung) AGAINST ('" . $this->_suchString . "')";
@@ -77,13 +78,16 @@ class index extends define
         switch ($this->_typ) {
             case 'admin':
                 $sql .= " and bereich = 'admin'";
-                break;
+            break;
             case 'front':
                 $sql .= " and bereich = 'front'";
-                break;
+            break;
             case 'tool':
                 $sql .= " and bereich = 'tool'";
-                break;
+            break;
+            case 'heute':
+                $sql .= " and geaendert like '".date("Y-m-d")."%'";
+            break;
         }
 
         if ($result = mysqli_query($this->_db_connect, $sql)) {
@@ -115,6 +119,11 @@ if (isset($_POST['suche'])) {
         ->setTyp($_POST['typ'])
         ->findeDateien()
         ->getDatensaetze();
+
+    $suche = $_POST['suche'];
+}
+else{
+    $suche = "";
 }
 
 ?>
@@ -128,18 +137,21 @@ if (isset($_POST['suche'])) {
     <tr>
         <td>Suche:</td>
         <td>
-            <form method="post" action="index.php"><input type="text" name="suche" style="border: 1px solid green;">
+            <form method="post" action="index.php"><input type="text" name="suche" value="<?php echo $suche; ?>" style="border: 1px solid green;">
         </td>
     </tr>
     <tr>
         <td colspan="2">
-            &nbsp; Admin: <input type="radio" value="admin" name="typ"> &nbsp; Front: &nbsp; <input type="radio"
-                                                                                                    name="typ"
-                                                                                                    value="front">
-            &nbsp; Tool: &nbsp; <input type="radio" name="typ" value="tool"> &nbsp; alles: &nbsp; <input type="radio"
-                                                                                                         name="typ"
-                                                                                                         value="alles"
-                                                                                                         checked="true">
+            &nbsp; Admin:
+            <input type="radio" value="admin" name="typ">
+            &nbsp; Front: &nbsp;
+            <input type="radio" name="typ" value="front">
+            &nbsp; Tool: &nbsp;
+            <input type="radio" name="typ" value="tool">
+            &nbsp; alles: &nbsp;
+            <input type="radio" name="typ" value="alles" checked="true">
+            &nbsp; Heute: &nbsp;
+            <input type="radio" name="typ" value="heute">
         </td>
     </tr>
     <tr>
@@ -158,6 +170,7 @@ if (isset($_POST['suche'])) {
         <td>&nbsp; Bereich &nbsp;</td>
         <td>&nbsp; Datei &nbsp;</td>
         <td>&nbsp; Treffer &nbsp;</td>
+        <td>&nbsp; ge&auml;ndert &nbsp;</td>
         <td>&nbsp; Dokumentation &nbsp; </td>
     </tr>
     <?php
@@ -166,22 +179,16 @@ if (isset($_POST['suche'])) {
         for ($i = 0; $i < count($datensaetze); $i++) {
             $treffer = $datensaetze[$i]['treffer'] * 10;
 
-            $dokumentation = substr($datensaetze[$i]['datei'], 0, -4);
+            $datei = substr($datensaetze[$i]['datei'], 0, -4);
 
-            if($datensaetze[$i]['bereich'] == 'tool')
-                $dokumentation = "nook_".$dokumentation;
-
-            if($datensaetze[$i]['bereich'] == 'plugin')
-                $dokumentation = "Plugin_".$dokumentation;
-
-            if($datensaetze[$i]['bereich'] == 'front'){
-                if(!strstr($dokumentation, 'Front'))
-                    $dokumentation = "Front_Model_".$dokumentation;
-            }
-
-            if($datensaetze[$i]['bereich'] == 'admin'){
-                if(!strstr($dokumentation, 'Admin'))
-                    $dokumentation = "Admin_Model_".$dokumentation;
+            if ($datensaetze[$i]['bereich'] == 'front') {
+                $dokumentation = "Front_Model_" . $datei;
+            } elseif ($datensaetze[$i]['bereich'] == 'admin') {
+                $dokumentation = "Admin_Model_" . $datei;
+            } elseif ($datensaetze[$i]['bereich'] == 'tool') {
+                $dokumentation = "nook_" . $datei;
+            } else {
+                $dokumentation = "plugin_" . $datei;
             }
 
             $farbTreffer = (int)$treffer;
@@ -194,7 +201,7 @@ if (isset($_POST['suche'])) {
                 . " &nbsp;</td><td style='background-color:rgb(255," . $farbTreffer . ",0);'>&nbsp; " . number_format(
                 $treffer, 2
             )
-                . " % &nbsp;</td><td>&nbsp; <a style='text-decoration: none; color: blue;' href='http://localhost/hob/_docs/class-"
+                . " % &nbsp;</td><td>&nbsp;".$datensaetze[$i]['geaendert']."&nbsp;</td><td>&nbsp; <a style='text-decoration: none; color: blue;' href='http://localhost/hob/_docs/class-"
                 . $dokumentation . ".html' target='_blank'> zur Dokumentation </a> &nbsp;</td></tr> \n";
         }
     }
