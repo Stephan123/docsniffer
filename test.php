@@ -1,0 +1,3 @@
+<?php
+
+$mytest = "<html></html>";

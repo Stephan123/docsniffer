@@ -24,7 +24,10 @@ class index extends define
     public function __construct()
     {
         $this->_db_connect = mysqli_connect(
-            $this->_db_server, $this->_db_user, $this->_db_passwort, $this->_db_datenbank
+            $this->_db_server,
+            $this->_db_user,
+            $this->_db_passwort,
+            $this->_db_datenbank
         );
 
         // mysqli_set_charset($this->_db_connect, "utf8");
@@ -78,16 +81,16 @@ class index extends define
         switch ($this->_typ) {
             case 'admin':
                 $sql .= " and bereich = 'admin'";
-            break;
+                break;
             case 'front':
                 $sql .= " and bereich = 'front'";
-            break;
+                break;
             case 'tool':
                 $sql .= " and bereich = 'tool'";
-            break;
+                break;
             case 'heute':
                 $sql = "select bereich, datei, geaendert from klassenverwaltung where geaendert like '".date("Y-m-d")."%'";
-            break;
+                break;
         }
 
         if ($result = mysqli_query($this->_db_connect, $sql)) {
@@ -112,18 +115,17 @@ class index extends define
 }
 
 if (isset($_POST['suche'])) {
-    $suche = new index();
+        $suche = new index();
 
-    $datensaetze = $suche
-        ->setSuchstring($_POST['suche'])
-        ->setTyp($_POST['typ'])
-        ->findeDateien()
-        ->getDatensaetze();
+        $datensaetze = $suche
+            ->setSuchstring($_POST['suche'])
+            ->setTyp($_POST['typ'])
+            ->findeDateien()
+            ->getDatensaetze();
 
-    $suche = $_POST['suche'];
-}
-else{
-    $suche = "";
+        $suche = $_POST['suche'];
+} else {
+        $suche = "";
 }
 
 ?>
@@ -173,43 +175,43 @@ else{
         <td>&nbsp; ge&auml;ndert &nbsp;</td>
         <td>&nbsp; Dokumentation &nbsp; </td>
     </tr>
-    <?php
-    if (is_array($datensaetze)) {
+<?php
+if (is_array($datensaetze)) {
 
-        for ($i = 0; $i < count($datensaetze); $i++) {
+    for ($i = 0; $i < count($datensaetze); $i++) {
 
-            if(array_key_exists('treffer', $datensaetze[$i]))
-                $treffer = $datensaetze[$i]['treffer'] * 10;
-            else
-                $treffer = 1;
+        if(array_key_exists('treffer', $datensaetze[$i]))
+            $treffer = $datensaetze[$i]['treffer'] * 10;
+        else
+            $treffer = 1;
 
-            $datei = substr($datensaetze[$i]['datei'], 0, -4);
+        $datei = substr($datensaetze[$i]['datei'], 0, -4);
 
-            if ($datensaetze[$i]['bereich'] == 'front') {
-                $dokumentation = "Front_Model_" . $datei;
-            } elseif ($datensaetze[$i]['bereich'] == 'admin') {
-                $dokumentation = "Admin_Model_" . $datei;
-            } elseif ($datensaetze[$i]['bereich'] == 'tool') {
-                $dokumentation = "nook_" . $datei;
-            } else {
-                $dokumentation = "plugin_" . $datei;
-            }
-
-            $farbTreffer = (int) $treffer;
-
-            $farbTreffer = 255 - ($farbTreffer * 3);
-            if ($farbTreffer < 0) {
-                $farbTreffer = 0;
-            }
-
-            echo "<tr><td>&nbsp; " . $datensaetze[$i]['bereich'] . " &nbsp;</td><td>&nbsp; " . $datensaetze[$i]['datei']
-                . " &nbsp;</td><td style='background-color:rgb(255," . $farbTreffer . ",0);'>&nbsp; " . number_format(
-                $treffer, 2
-            )
-                . " % &nbsp;</td><td>&nbsp;".$datensaetze[$i]['geaendert']."&nbsp;</td><td>&nbsp; <a style='text-decoration: none; color: blue;' href='http://localhost/hob/_docs/class-"
-                . $dokumentation . ".html' target='_blank'> zur Dokumentation </a> &nbsp;</td></tr> \n";
+        if ($datensaetze[$i]['bereich'] == 'front') {
+            $dokumentation = "Front_Model_" . $datei;
+        } elseif ($datensaetze[$i]['bereich'] == 'admin') {
+            $dokumentation = "Admin_Model_" . $datei;
+        } elseif ($datensaetze[$i]['bereich'] == 'tool') {
+            $dokumentation = "nook_" . $datei;
+        } else {
+            $dokumentation = "plugin_" . $datei;
         }
-    }
 
-    ?>
+        $farbTreffer = (int) $treffer;
+
+        $farbTreffer = 255 - ($farbTreffer * 3);
+        if ($farbTreffer < 0) {
+            $farbTreffer = 0;
+        }
+
+        echo "<tr><td>&nbsp; " . $datensaetze[$i]['bereich'] . " &nbsp;</td><td>&nbsp; " . $datensaetze[$i]['datei']
+            . " &nbsp;</td><td style='background-color:rgb(255," . $farbTreffer . ",0);'>&nbsp; " . number_format(
+            $treffer, 2
+        )
+            . " % &nbsp;</td><td>&nbsp;".$datensaetze[$i]['geaendert']."&nbsp;</td><td>&nbsp; <a style='text-decoration: none; color: blue;' href='http://localhost/hob/_docs/class-"
+            . $dokumentation . ".html' target='_blank'> zur Dokumentation </a> &nbsp;</td></tr> \n";
+    }
+}
+
+?>
 </table>
