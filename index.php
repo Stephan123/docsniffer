@@ -139,7 +139,7 @@ if (isset($_POST['suche'])) {
     <tr>
         <td>Suche:</td>
         <td>
-            <form method="post" action="index.php"><input type="text" name="suche" value="<?php echo $suche; ?>" style="border: 1px solid green;">
+            <form method="post" action="index.php"><input type="text" name="suche" value="<?php echo $suche; ?>" style="border: 1px solid green; width: 500px;">
         </td>
     </tr>
     <tr>
@@ -204,7 +204,7 @@ if (is_array($datensaetze)) {
             $farbTreffer = 0;
         }
 
-        echo "<tr><td>&nbsp; " . $datensaetze[$i]['bereich'] . " &nbsp;</td><td>&nbsp; " . $datensaetze[$i]['datei']
+        echo "<tr><td>&nbsp; " .$datensaetze[$i]['bereich']. " &nbsp;</td><td>&nbsp; " . $datensaetze[$i]['datei']
             . " &nbsp;</td><td style='background-color:rgb(255," . $farbTreffer . ",0);'>&nbsp; " . number_format(
             $treffer, 2
         )
