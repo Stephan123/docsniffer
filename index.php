@@ -105,6 +105,34 @@ class index extends define
     }
 
     /**
+     * Durchsucht die Tabelle mittels Soundex
+     *
+     * @param $suchstring
+     */
+    public function soundex()
+    {
+        $sql = "
+        SELECT
+          bereich,
+          datei,
+          geaendert,
+          klassenbeschreibung = 0 as treffer
+        FROM
+          klassenverwaltung
+        WHERE SOUNDEX(klassenbeschreibung) LIKE CONCAT('%',SOUNDEX('".$this->_suchString."'),'%')";
+
+        if ($result = mysqli_query($this->_db_connect, $sql)) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $this->_result[] = $row;
+            }
+
+            mysqli_free_result($result);
+        }
+
+        return $this;
+    }
+
+    /**
      * @return array
      */
     public function getDatensaetze()
@@ -115,17 +143,26 @@ class index extends define
 }
 
 if (isset($_POST['suche'])) {
-        $suche = new index();
 
-        $datensaetze = $suche
-            ->setSuchstring($_POST['suche'])
-            ->setTyp($_POST['typ'])
-            ->findeDateien()
-            ->getDatensaetze();
+    $suche = new index();
+    $suche->setSuchstring($_POST['suche']);
 
-        $suche = $_POST['suche'];
-} else {
-        $suche = "";
+
+    if($_POST['typ'] == 'soundex'){
+        $suche->soundex();
+    }
+    else{
+        $suche
+           ->setTyp($_POST['typ'])
+           ->findeDateien();
+    }
+
+    $datensaetze = $suche->getDatensaetze();
+    $suche = $_POST['suche'];
+
+}
+else {
+    $suche = "";
 }
 
 ?>
@@ -154,6 +191,8 @@ if (isset($_POST['suche'])) {
             <input type="radio" name="typ" value="alles" checked="true">
             &nbsp; Heute: &nbsp;
             <input type="radio" name="typ" value="heute">
+            &nbsp; Phonetisch: &nbsp;
+            <input type="radio" name="typ" value="soundex">
         </td>
     </tr>
     <tr>
