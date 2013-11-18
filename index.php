@@ -91,6 +91,9 @@ class index extends define
             case 'heute':
                 $sql = "select bereich, datei, geaendert from klassenverwaltung where geaendert like '".date("Y-m-d")."%'";
                 break;
+			case 'unscharf':
+				$sql = $this->erstellenSuchString($this->_suchString);	
+				break;
         }
 
         if ($result = mysqli_query($this->_db_connect, $sql)) {
@@ -103,6 +106,46 @@ class index extends define
 
         return $this;
     }
+	
+	/**
+	* Erstellen der 'unscharfen' Suche
+	*
+	* + Verknüpft mehrere Suchbegriffe und sucht mit 'like'
+	*/
+	public function erstellenSuchString($suchstring)
+	{
+		$suchstring = trim($suchstring);
+		$suchbegriffe = null;
+		$suchbegriffe = explode(" ", $suchstring);
+		
+		if((is_null($suchbegriffe)) or (count($suchbegriffe) < 2)){
+			$sql = "SELECT 
+					bereich,
+					datei,
+					geaendert 
+				FROM
+					klassenverwaltung 
+					WHERE klassenbeschreibung LIKE '%".$suchstring."%' group by datei asc";
+		}
+		else{
+			$sql = "SELECT 
+					bereich,
+					datei,
+					geaendert 
+				FROM
+					klassenverwaltung where";
+					
+			for($i=0; $i < count($suchbegriffe); $i++){
+				if(strlen($suchbegriffe[$i]) > 2)
+					$sql .= " klassenbeschreibung like '%".$suchbegriffe[$i]."%' and";
+			}
+			
+			$sql = substr($sql, 0 , -4);
+			$sql .= " group by datei asc";
+		}
+
+		return $sql;
+	}
 
     /**
      * Durchsucht die Tabelle mittels Soundex
@@ -181,6 +224,8 @@ else {
     </tr>
     <tr>
         <td colspan="2">
+			&nbsp; unscharf: &nbsp;
+            <input type="radio" name="typ" value="unscharf" checked="true">
             &nbsp; Admin:
             <input type="radio" value="admin" name="typ">
             &nbsp; Front: &nbsp;
@@ -188,7 +233,7 @@ else {
             &nbsp; Tool: &nbsp;
             <input type="radio" name="typ" value="tool">
             &nbsp; alles: &nbsp;
-            <input type="radio" name="typ" value="alles" checked="true">
+            <input type="radio" name="typ" value="alles">
             &nbsp; Heute: &nbsp;
             <input type="radio" name="typ" value="heute">
             &nbsp; Phonetisch: &nbsp;
