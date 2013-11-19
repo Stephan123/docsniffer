@@ -23,6 +23,7 @@ class index extends define
     private $flagSearchFront = false;
     private $flagSearchAdmin = false;
     private $flagSearchTool = false;
+    private $flagSearchSound = false;
 
     public function __construct()
     {
@@ -65,6 +66,11 @@ class index extends define
         $this->flagSearchTool = true;
     }
 
+    public function setSearchSound()
+    {
+        $this->flagSearchSound = true;
+    }
+
     /**
      * Ermittelt die Datensätze
      *
@@ -103,8 +109,12 @@ class index extends define
 					geaendert,
 					count(id) as anzahl
 				FROM
-					klassenverwaltung 
-					WHERE klassenbeschreibung LIKE '%".$suchstring."%'";
+					klassenverwaltung ";
+
+            if($this->flagSearchSound)
+                $sql .= "where klassenbeschreibung SOUNDS LIKE '%".$suchstring."%'";
+            else
+				$sql .= "WHERE klassenbeschreibung LIKE '%".$suchstring."%'";
 		}
 		else{
 			$sql = "SELECT 
@@ -113,11 +123,15 @@ class index extends define
 					geaendert,
 					count(id) as anzahl
 				FROM
-					klassenverwaltung where";
+					klassenverwaltung where ";
 					
 			for($i=0; $i < count($suchbegriffe); $i++){
 				if(strlen($suchbegriffe[$i]) > 2)
-					$sql .= " klassenbeschreibung like '%".$suchbegriffe[$i]."%' and";
+
+                    if($this->flagSearchSound)
+                        $sql .= "klassenbeschreibung SOUNDS LIKE '%".$suchstring."%' and ";
+                    else
+                        $sql .= "klassenbeschreibung LIKE '%".$suchstring."%' and ";
 			}
 			
 			$sql = substr($sql, 0 , -4);
@@ -162,6 +176,9 @@ if (isset($_POST['suche'])) {
     if((array_key_exists('tool', $_POST)) and ($_POST['tool'] == 'tool'))
         $suche->setSearchTool();
 
+    if((array_key_exists('sound', $_POST)) and ($_POST['sound'] == 'sound'))
+            $suche->setSearchSound();
+
     $suche->findeDateien();
 
     $datensaetze = $suche->getDatensaetze();
@@ -194,6 +211,9 @@ else {
             <input type="checkbox" name="front" value="front">
             &nbsp; Tool: &nbsp;
             <input type="checkbox" name="tool" value="tool">
+            &nbsp; Soundsuche: &nbsp;
+            <input type="checkbox" name="sound" value="sound">
+
         </td>
     </tr>
     <tr>
