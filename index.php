@@ -19,7 +19,10 @@ class index extends define
 
     private $_suchString = null;
     private $_result = array();
-    private $_typ = null;
+
+    private $flagSearchFront = false;
+    private $flagSearchAdmin = false;
+    private $flagSearchTool = false;
 
     public function __construct()
     {
@@ -47,17 +50,19 @@ class index extends define
         return $this;
     }
 
-    /**
-     * @param $typ
-     *
-     * @return index
-     */
-    public function setTyp($typ)
+    public function setSearchFront()
     {
-        $typ = trim($typ);
-        $this->_typ = $typ;
+        $this->flagSearchFront = true;
+    }
 
-        return $this;
+    public function setSearchAdmin()
+    {
+       $this->flagSearchAdmin = true;
+    }
+
+    public function setSearchTool()
+    {
+        $this->flagSearchTool = true;
     }
 
     /**
@@ -67,34 +72,7 @@ class index extends define
      */
     public function findeDateien()
     {
-
-        $sql
-            = "SELECT
-          bereich,
-          datei,
-          MATCH (klassenbeschreibung) AGAINST ('" . $this->_suchString . "') AS treffer,
-          geaendert
-        FROM
-          klassenverwaltung
-        WHERE MATCH (klassenbeschreibung) AGAINST ('" . $this->_suchString . "')";
-
-        switch ($this->_typ) {
-            case 'admin':
-                $sql .= " and bereich = 'admin'";
-                break;
-            case 'front':
-                $sql .= " and bereich = 'front'";
-                break;
-            case 'tool':
-                $sql .= " and bereich = 'tool'";
-                break;
-            case 'heute':
-                $sql = "select bereich, datei, geaendert from klassenverwaltung where geaendert like '".date("Y-m-d")."%'";
-                break;
-			case 'unscharf':
-				$sql = $this->erstellenSuchString($this->_suchString);	
-				break;
-        }
+        $sql = $this->erstellenSuchString($this->_suchString);
 
         if ($result = mysqli_query($this->_db_connect, $sql)) {
             while ($row = mysqli_fetch_assoc($result)) {
@@ -125,7 +103,7 @@ class index extends define
 					geaendert 
 				FROM
 					klassenverwaltung 
-					WHERE klassenbeschreibung LIKE '%".$suchstring."%' group by datei asc";
+					WHERE klassenbeschreibung LIKE '%".$suchstring."%'";
 		}
 		else{
 			$sql = "SELECT 
@@ -141,39 +119,21 @@ class index extends define
 			}
 			
 			$sql = substr($sql, 0 , -4);
-			$sql .= " group by datei asc";
 		}
+
+        if($this->flagSearchFront)
+            $sql .= " and bereich = 'front'";
+
+        if($this->flagSearchAdmin)
+            $sql .= " and bereich = 'admin'";
+
+        if($this->flagSearchTool)
+            $sql .= " and bereich = 'tool'";
+
+        $sql .= " group by datei asc";
 
 		return $sql;
 	}
-
-    /**
-     * Durchsucht die Tabelle mittels Soundex
-     *
-     * @param $suchstring
-     */
-    public function soundex()
-    {
-        $sql = "
-        SELECT
-          bereich,
-          datei,
-          geaendert,
-          klassenbeschreibung = 0 as treffer
-        FROM
-          klassenverwaltung
-        WHERE SOUNDEX(klassenbeschreibung) LIKE CONCAT('%',SOUNDEX('".$this->_suchString."'),'%')";
-
-        if ($result = mysqli_query($this->_db_connect, $sql)) {
-            while ($row = mysqli_fetch_assoc($result)) {
-                $this->_result[] = $row;
-            }
-
-            mysqli_free_result($result);
-        }
-
-        return $this;
-    }
 
     /**
      * @return array
@@ -190,15 +150,16 @@ if (isset($_POST['suche'])) {
     $suche = new index();
     $suche->setSuchstring($_POST['suche']);
 
+    if((array_key_exists('front', $_POST)) and ($_POST['front'] == 'front'))
+        $suche->setSearchFront();
 
-    if($_POST['typ'] == 'soundex'){
-        $suche->soundex();
-    }
-    else{
-        $suche
-           ->setTyp($_POST['typ'])
-           ->findeDateien();
-    }
+    if((array_key_exists('admin', $_POST)) and ($_POST['admin'] == 'admin'))
+        $suche->setSearchAdmin();
+
+    if((array_key_exists('tool', $_POST)) and ($_POST['tool'] == 'tool'))
+        $suche->setSearchTool();
+
+    $suche->findeDateien();
 
     $datensaetze = $suche->getDatensaetze();
     $suche = $_POST['suche'];
@@ -224,20 +185,12 @@ else {
     </tr>
     <tr>
         <td colspan="2">
-			&nbsp; unscharf: &nbsp;
-            <input type="radio" name="typ" value="unscharf" checked="true">
             &nbsp; Admin:
-            <input type="radio" value="admin" name="typ">
+            <input type="checkbox" value="admin" name="admin">
             &nbsp; Front: &nbsp;
-            <input type="radio" name="typ" value="front">
+            <input type="checkbox" name="front" value="front">
             &nbsp; Tool: &nbsp;
-            <input type="radio" name="typ" value="tool">
-            &nbsp; alles: &nbsp;
-            <input type="radio" name="typ" value="alles">
-            &nbsp; Heute: &nbsp;
-            <input type="radio" name="typ" value="heute">
-            &nbsp; Phonetisch: &nbsp;
-            <input type="radio" name="typ" value="soundex">
+            <input type="checkbox" name="tool" value="tool">
         </td>
     </tr>
     <tr>
@@ -255,7 +208,6 @@ else {
     <tr>
         <td>&nbsp; Bereich &nbsp;</td>
         <td>&nbsp; Datei &nbsp;</td>
-        <td>&nbsp; Treffer &nbsp;</td>
         <td>&nbsp; ge&auml;ndert &nbsp;</td>
         <td>&nbsp; Dokumentation &nbsp; </td>
     </tr>
@@ -281,18 +233,8 @@ if (is_array($datensaetze)) {
             $dokumentation = "plugin_" . $datei;
         }
 
-        $farbTreffer = (int) $treffer;
-
-        $farbTreffer = 255 - ($farbTreffer * 3);
-        if ($farbTreffer < 0) {
-            $farbTreffer = 0;
-        }
-
         echo "<tr><td>&nbsp; " .$datensaetze[$i]['bereich']. " &nbsp;</td><td>&nbsp; " . $datensaetze[$i]['datei']
-            . " &nbsp;</td><td style='background-color:rgb(255," . $farbTreffer . ",0);'>&nbsp; " . number_format(
-            $treffer, 2
-        )
-            . " % &nbsp;</td><td>&nbsp;".$datensaetze[$i]['geaendert']."&nbsp;</td><td>&nbsp; <a style='text-decoration: none; color: blue;' href='http://localhost/hob/_docs/class-"
+            . " &nbsp;</td><td>&nbsp;".$datensaetze[$i]['geaendert']."&nbsp;</td><td>&nbsp; <a style='text-decoration: none; color: blue;' href='http://localhost/hob/_docs/class-"
             . $dokumentation . ".html' target='_blank'> zur Dokumentation </a> &nbsp;</td></tr> \n";
     }
 }
