@@ -100,7 +100,8 @@ class index extends define
 			$sql = "SELECT 
 					bereich,
 					datei,
-					geaendert 
+					geaendert,
+					count(id) as anzahl
 				FROM
 					klassenverwaltung 
 					WHERE klassenbeschreibung LIKE '%".$suchstring."%'";
@@ -109,7 +110,8 @@ class index extends define
 			$sql = "SELECT 
 					bereich,
 					datei,
-					geaendert 
+					geaendert,
+					count(id) as anzahl
 				FROM
 					klassenverwaltung where";
 					
@@ -130,7 +132,8 @@ class index extends define
         if($this->flagSearchTool)
             $sql .= " and bereich = 'tool'";
 
-        $sql .= " group by datei asc";
+        $sql .= " group by datei";
+		$sql .= " order by anzahl desc";
 
 		return $sql;
 	}
@@ -206,6 +209,7 @@ else {
 
 <table border="1" style="margin-left: 100px;">
     <tr>
+		<td>&nbsp; Treffer &nbsp;</td>
         <td>&nbsp; Bereich &nbsp;</td>
         <td>&nbsp; Datei &nbsp;</td>
         <td>&nbsp; ge&auml;ndert &nbsp;</td>
@@ -233,7 +237,7 @@ if (is_array($datensaetze)) {
             $dokumentation = "plugin_" . $datei;
         }
 
-        echo "<tr><td>&nbsp; " .$datensaetze[$i]['bereich']. " &nbsp;</td><td>&nbsp; " . $datensaetze[$i]['datei']
+        echo "<tr><td>".$datensaetze[$i]['anzahl']."</td><td>&nbsp; " .$datensaetze[$i]['bereich']. " &nbsp;</td><td>&nbsp; " . $datensaetze[$i]['datei']
             . " &nbsp;</td><td>&nbsp;".$datensaetze[$i]['geaendert']."&nbsp;</td><td>&nbsp; <a style='text-decoration: none; color: blue;' href='http://localhost/hob/_docs/class-"
             . $dokumentation . ".html' target='_blank'> zur Dokumentation </a> &nbsp;</td></tr> \n";
     }
