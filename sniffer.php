@@ -25,7 +25,6 @@ include_once("verzeichnisse.php");
 
 class auswertungDocs extends define
 {
-
     private $file = null;
     private $dirName = null;
     private $kennung = null;
