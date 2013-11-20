@@ -8,7 +8,6 @@
  *
  * @package tool
  */
-
 class define
 {
     protected $_db_connect = null;

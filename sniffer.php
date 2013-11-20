@@ -2,22 +2,16 @@
 /**
  * Klasse zur Auswertung der Doc's der Model in einem Verzeichnis
  *
- *
- *
-
-Create Table
-
-CREATE TABLE `klassenverwaltung` (
-`id` int(10) NOT NULL AUTO_INCREMENT,
-`bereich` varchar(50) NOT NULL,
-`datei` varchar(50) NOT NULL,
-`klassenbeschreibung` text NOT NULL,
-`geaendert` datetime NOT NULL,
-`eingetragen` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-PRIMARY KEY (`id`),
-FULLTEXT KEY `volltext` (`klassenbeschreibung`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
-
+ *  CREATE TABLE `klassenverwaltung` (
+ *    `id` int(10) NOT NULL AUTO_INCREMENT,
+ *    `bereich` varchar(50) NOT NULL,
+ *    `datei` varchar(50) NOT NULL,
+ *    `klassenbeschreibung` text NOT NULL,
+ *    `geaendert` datetime NOT NULL,
+ *    `eingetragen` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ *    PRIMARY KEY (`id`),
+ *    FULLTEXT KEY `volltext` (`klassenbeschreibung`)
+ *  ) ENGINE=MyISAM AUTO_INCREMENT=2629 DEFAULT CHARSET=utf8
  *
  * @author  User
  * @date 20.05.13
@@ -32,13 +26,13 @@ include_once("verzeichnisse.php");
 class auswertungDocs extends define
 {
 
-    private $_file = null;
-    private $_dirName = null;
-    private $_kennung = null;
-    private $_tokens = array();
-    private $_docs = array();
+    private $file = null;
+    private $dirName = null;
+    private $kennung = null;
+    private $tokens = array();
+    private $docs = array();
     private $_source = null;
-    private $_aenderungDatum = null;
+    private $aenderungDatum = null;
 
     private $_zaehler = 0;
 
@@ -50,7 +44,7 @@ class auswertungDocs extends define
 
         mysqli_set_charset($this->_db_connect, "utf8");
 
-        $sql = "delete from klassenverwaltung";
+        $sql = "truncate table klassenverwaltung";
         mysqli_query($this->_db_connect, $sql);
 
         return;
@@ -63,9 +57,9 @@ class auswertungDocs extends define
      *
      * @return auswertungDocs
      */
-    private function _setFile($file)
+    private function setFile($file)
     {
-        $this->_file = $file;
+        $this->file = $file;
 
         return $this;
     }
@@ -79,7 +73,7 @@ class auswertungDocs extends define
      */
     public function setDirName($dir)
     {
-        $this->_dirName = $dir;
+        $this->dirName = $dir;
 
         return $this;
     }
@@ -87,11 +81,11 @@ class auswertungDocs extends define
     /**
      * @param $dir
      *
-     * @return $this
+     * @return auswertungDocs
      */
-    private function _setDir($dir)
+    private function setDir($dir)
     {
-        $this->_dirName = $dir;
+        $this->dirName = $dir;
 
         return $this;
     }
@@ -99,11 +93,11 @@ class auswertungDocs extends define
     /**
      * @param $kennung
      *
-     * @return $this
+     * @return auswertungDocs
      */
-    private function _setKennung($kennung)
+    private function setKennung($kennung)
     {
-        $this->_kennung = $kennung;
+        $this->kennung = $kennung;
 
         return $this;
     }
@@ -115,12 +109,13 @@ class auswertungDocs extends define
      *
      * @return auswertungDocs
      */
-    private function _setTokens()
+    private function
+    setTokens()
     {
-        $source = file_get_contents($this->_dirName . "/" . $this->_file);
-        $this->_tokens = token_get_all($source);
+        $source = file_get_contents($this->dirName . "/" . $this->file);
+        $this->tokens = token_get_all($source);
 
-        $this->_aenderungDatum = date('Y-m-d H:i:s', filemtime($this->_dirName . "/" . $this->_file));
+        $this->aenderungDatum = date('Y-m-d H:i:s', filemtime($this->dirName . "/" . $this->file));
 
         $this->_source = $source;
 
@@ -134,8 +129,7 @@ class auswertungDocs extends define
      */
     public function findComments()
     {
-
-        $this->_docs = array();
+        $this->docs = array();
         $klassenName = "";
 
         // Klassenname
@@ -148,11 +142,11 @@ class auswertungDocs extends define
             }
         }
 
-        foreach ($this->_tokens as $token) {
+        foreach ($this->tokens as $token) {
 
             // Php Docs
             if ($token[0] == T_DOC_COMMENT) {
-                $this->_docs[] = $klassenName." ".$token[1];
+                $this->docs[] = $klassenName." ".$token[1];
             }
         }
 
@@ -162,12 +156,12 @@ class auswertungDocs extends define
     /**
      * Ermitteln Beschreibung und Items der Klasse
      *
-     * @return $this
+     * @return auswertungDocs
      */
     public function eintragenDocs()
     {
 
-        foreach ($this->_docs as $doc) {
+        foreach ($this->docs as $doc) {
 
             $doc = trim($doc);
             $this->_eintragenTabelle($doc);
@@ -191,9 +185,9 @@ class auswertungDocs extends define
      */
     private function _findComments()
     {
-        foreach ($this->_tokens as $token) {
+        foreach ($this->tokens as $token) {
             if ($token[0] == T_DOC_COMMENT) {
-                $this->_docs = $token[1];
+                $this->docs = $token[1];
             }
         }
     }
@@ -208,7 +202,7 @@ class auswertungDocs extends define
 
         $doc = str_replace("'", "", $doc);
 
-        $sql = "insert into klassenverwaltung (bereich, datei, klassenbeschreibung, geaendert) values('" . $this->_kennung . "','". $this->_file . "','" . $doc . "', '".$this->_aenderungDatum."')";
+        $sql = "insert into klassenverwaltung (bereich, datei, klassenbeschreibung, geaendert) values('" . $this->kennung . "','". $this->file . "','" . $doc . "', '".$this->aenderungDatum."')";
         if (mysqli_query($this->_db_connect, $sql)) {
             $this->_zaehler++;
         } else {
@@ -257,10 +251,10 @@ class auswertungDocs extends define
     private function _start(array $verzeichnisse, $file, $i)
     {
         $this
-            ->_setFile($file)
-            ->_setDir($verzeichnisse[$i]['pfad'])
-            ->_setKennung($verzeichnisse[$i]['kennung'])
-            ->_setTokens()
+            ->setFile($file)
+            ->setDir($verzeichnisse[$i]['pfad'])
+            ->setKennung($verzeichnisse[$i]['kennung'])
+            ->setTokens()
             ->findComments()
             ->eintragenDocs();
     }
