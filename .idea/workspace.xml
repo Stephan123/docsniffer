@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="ANALYZE_TEST_SOURCES" value="false" />
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1d9efc3d-027c-4498-9761-fb7217cdf760" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sniffer.php" afterPath="$PROJECT_DIR$/sniffer.php" />
+    </list>
+    <ignored path="docsniffer.iws" />
+    <ignored path=".idea/" />
+    <ignored path="composer.phar" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="ComposerSettings">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <pharPath>C:\xampp\htdocs\docsniffer\composer.phar</pharPath>
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="Test">
+      <favorite_root url="file://$PROJECT_DIR$/index.php" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+      <favorite_root url="file://$PROJECT_DIR$/define.php" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+    </favorites_list>
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="sniffer.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/sniffer.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="156" column="0" selection-start="3386" selection-end="3386" vertical-scroll-proportion="0.5433884" vertical-offset="2066" max-vertical-offset="4233">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="verzeichnisse.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/verzeichnisse.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="0" selection-start="165" selection-end="165" vertical-scroll-proportion="-1.3076923" vertical-offset="0" max-vertical-offset="289">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitLogSettings">
+    <option name="myStructureFilterPaths" />
+    <option name="myDateState">
+      <MyDateState />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/test.php" />
+        <option value="$PROJECT_DIR$/composer.json" />
+        <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/define.php" />
+        <option value="$PROJECT_DIR$/sniffer.php" />
+      </list>
+    </option>
+  </component>
+  <component name="PhpServers">
+    <option name="servers">
+      <server host="localhost" name="localhost" />
+    </option>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-1688" />
+    <option name="y" value="-8" />
+    <option name="width" value="1696" />
+    <option name="height" value="1066" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state />
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1" splitterProportion="0.5">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents ProjectPane="true" />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Ignored.Files" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/composer.phar" />
+    <property name="FullScreen" value="false" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
+  </component>
+  <component name="PublishConfig" serverName="docsniffer" serverId="b7e4bc49-bb07-4321-b197-44cf9440e98a">
+    <servers>
+      <server id="0836b128-c872-4424-8405-3b541a49d228">
+        <serverdata />
+      </server>
+      <server id="49a40d75-2f43-402a-84dd-0be3eea6fdfa">
+        <serverdata />
+      </server>
+      <server id="4c097d08-c0a2-4511-858e-038f82a494e6">
+        <serverdata />
+      </server>
+      <server id="5fca1896-5b5c-47d6-a8f5-27ce8e2111a3">
+        <serverdata />
+      </server>
+      <server id="72b2e15f-69fd-4b35-bab3-431d1c1178a8">
+        <serverdata />
+      </server>
+      <server id="87fd9abf-5211-4025-9be0-08b77b6a7085">
+        <serverdata />
+      </server>
+      <server id="8d37cc77-b68f-4fc5-b986-62fe8e4a231b">
+        <serverdata />
+      </server>
+      <server id="98090632-a297-4f4e-8a45-83b3d4635bf8">
+        <serverdata />
+      </server>
+      <server id="9e13adec-bb64-46b1-a8fc-2695470a33c1">
+        <serverdata />
+      </server>
+      <server id="aade11f4-ffd8-47b2-b388-3c0b0152d5a0">
+        <serverdata />
+      </server>
+      <server id="aae805f8-c59d-4b2c-b36b-9a47a0d63b50">
+        <serverdata />
+      </server>
+      <server id="aaf85afa-40ec-4203-b2d7-3448aa37750a">
+        <serverdata />
+      </server>
+      <server id="ae569748-d4fd-4eb8-9aea-47c46d085601">
+        <serverdata />
+      </server>
+      <server id="b21a030b-4fe3-4ec8-bb79-1727d541d99d">
+        <serverdata />
+      </server>
+      <server id="b3c02024-6871-4f70-bc78-feff05aa8715">
+        <serverdata />
+      </server>
+      <server id="b3d47368-7926-41ff-9596-87bc36e5db62">
+        <serverdata />
+      </server>
+      <server id="b7e4bc49-bb07-4321-b197-44cf9440e98a">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </server>
+      <server id="bd5c167c-c19e-410e-9d28-f1da50689138">
+        <serverdata />
+      </server>
+      <server id="d0396e63-a4fc-4bf0-b109-1ff628bd0c66">
+        <serverdata />
+      </server>
+      <server id="d5c07e4c-c730-4fdf-b371-8fa595114e9e">
+        <serverdata />
+      </server>
+    </servers>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server" server_id="b7e4bc49-bb07-4321-b197-44cf9440e98a" server_name="docsniffer">
+      <method />
+    </configuration>
+    <list size="0" />
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="all">
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="mySSHConnectionTimeout" value="30000" />
+    <option name="mySSHReadTimeout" value="30000" />
+    <option name="LAST_MERGED_REVISION" />
+    <option name="MERGE_DRY_RUN" value="false" />
+    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
+    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
+    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
+    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
+    <option name="FORCE_UPDATE" value="false" />
+    <option name="IGNORE_EXTERNALS" value="false" />
+    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1d9efc3d-027c-4498-9761-fb7217cdf760" name="Default" comment="" />
+      <created>1369290590077</created>
+      <updated>1369290590077</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Korrektur Link Tool und Plugin">
+      <created>1369293137690</created>
+      <updated>1369293137690</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Korrektur Link Tool und Plugin">
+      <created>1369293453219</created>
+      <updated>1369293453219</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Mergen der Dateien">
+      <created>1369813833874</created>
+      <updated>1369813833874</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Korrektur Anzeige des heutigen datums">
+      <created>1369823271740</created>
+      <updated>1369823271740</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Korrektur Anzeige des heutigen datums">
+      <created>1370589820209</created>
+      <updated>1370589820209</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Korrektur Anzeige des heutigen datums">
+      <created>1378365891292</created>
+      <updated>1378365891292</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Korrektur Anzeige des heutigen datums">
+      <created>1381321858265</created>
+      <updated>1381321858265</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Einbau phonetische Suche">
+      <created>1381327759541</created>
+      <updated>1381327759541</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Berbessern der unscharfen Suche. Verwendung von mehreren Suchbegriffen in der unscharfen Suche">
+      <created>1384774698147</created>
+      <updated>1384774698147</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Überarbeiten der Anzeige und des Aufbau der Query">
+      <created>1384857218443</created>
+      <updated>1384857218443</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Anzeige der Trefferwahrscheinlichkeit">
+      <created>1384860903828</created>
+      <updated>1384860903828</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Anzeige der Trefferwahrscheinlichkeit">
+      <created>1384861971409</created>
+      <updated>1384861971409</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Überarbeiten des einlesen der Dateien">
+      <created>1384936157100</created>
+      <updated>1384936157100</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Überarbeiten des einlesen der Dateien">
+      <created>1384936262460</created>
+      <updated>1384936262460</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-1688" y="-8" width="1696" height="1066" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.9141631" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39736554" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34271726" sideWeight="0.6008584" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20134638" sideWeight="0.6026345" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14259486" sideWeight="0.6702356" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.249694" sideWeight="0.6026345" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32976446" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="PlantUML" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Duplicates" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39914164" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="myTodoPanelSettings">
+      <TodoPanelSettings />
+    </option>
+    <MESSAGE value="Korrektur Link Tool und Plugin" />
+    <MESSAGE value="Mergen der Dateien" />
+    <MESSAGE value="Korrektur Anzeige des heutigen datums" />
+    <MESSAGE value="Einbau phonetische Suche" />
+    <MESSAGE value="Berbessern der unscharfen Suche. Verwendung von mehreren Suchbegriffen in der unscharfen Suche" />
+    <MESSAGE value="Überarbeiten der Anzeige und des Aufbau der Query" />
+    <MESSAGE value="Anzeige der Trefferwahrscheinlichkeit" />
+    <MESSAGE value="Überarbeiten des einlesen der Dateien" />
+    <option name="LAST_COMMIT_MESSAGE" value="Überarbeiten des einlesen der Dateien" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="17" />
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/define.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="3" selection-start="112" selection-end="112" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="391">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/define.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="35" selection-start="313" selection-end="313" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="183" column="50" selection-start="4638" selection-end="4638" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/define.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="35" selection-start="313" selection-end="313" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="174" column="40" selection-start="4235" selection-end="4235" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/define.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="35" selection-start="313" selection-end="313" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="168" column="0" selection-start="3955" selection-end="3955" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../php/PEAR/PHP/CodeSniffer/Standards/PSR2/Sniffs/Classes/ClassDeclarationSniff.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.6375" vertical-offset="0" max-vertical-offset="0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../php/PEAR/PHP/CodeSniffer/Standards/PSR2/Sniffs/Files/EndFileNewlineSniff.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.28977272" vertical-offset="0" max-vertical-offset="0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../php/phpcs.bat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="76" selection-start="0" selection-end="716" vertical-scroll-proportion="0.35018727" vertical-offset="0" max-vertical-offset="0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../php/phpmd.bat">
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="69" selection-start="1534" selection-end="1534" vertical-scroll-proportion="0.29862475" vertical-offset="0" max-vertical-offset="0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="151" column="0" selection-start="3180" selection-end="3180" vertical-scroll-proportion="0.33333334" vertical-offset="2244" max-vertical-offset="4471" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/define.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="3" selection-start="112" selection-end="112" vertical-scroll-proportion="0.1734694" vertical-offset="0" max-vertical-offset="882">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/tokenizer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="9" selection-start="560" selection-end="560" vertical-scroll-proportion="0.3276644" vertical-offset="0" max-vertical-offset="2958">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/verzeichnisse.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="0" selection-start="165" selection-end="165" vertical-scroll-proportion="-1.3076923" vertical-offset="0" max-vertical-offset="289">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sniffer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="156" column="0" selection-start="3386" selection-end="3386" vertical-scroll-proportion="0.5433884" vertical-offset="2066" max-vertical-offset="4233">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
+

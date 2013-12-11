@@ -30,6 +30,7 @@ class auswertungDocs extends define
     private $kennung = null;
     private $tokens = array();
     private $docs = array();
+    private $eigenschaften = array();
     private $_source = null;
     private $aenderungDatum = null;
 
@@ -108,8 +109,7 @@ class auswertungDocs extends define
      *
      * @return auswertungDocs
      */
-    private function
-    setTokens()
+    private function setTokens()
     {
         $source = file_get_contents($this->dirName . "/" . $this->file);
         $this->tokens = token_get_all($source);
@@ -141,11 +141,23 @@ class auswertungDocs extends define
             }
         }
 
+        $flagMethodenName = false;
         foreach ($this->tokens as $token) {
 
             // Php Docs
             if ($token[0] == T_DOC_COMMENT) {
                 $this->docs[] = $klassenName." ".$token[1];
+            }
+
+            // Kennung Methode
+            if($token[0] == T_FUNCTION){
+                $flagMethodenName = true;
+            }
+
+            // Name der Methode
+            if( ($token[0] == 307) and ($flagMethodenName === true) ){
+                $this->docs[] = $klassenName." ".$this->file." ".$token[1];
+                $flagMethodenName = false;
             }
         }
 
@@ -180,18 +192,6 @@ class auswertungDocs extends define
     }
 
     /**
-     * Findet die Kommentare der Datei
-     */
-    private function _findComments()
-    {
-        foreach ($this->tokens as $token) {
-            if ($token[0] == T_DOC_COMMENT) {
-                $this->docs = $token[1];
-            }
-        }
-    }
-
-    /**
      * Eintragen der Klassenbeschreibung
      *
      * @return auswertungDocs
@@ -201,7 +201,7 @@ class auswertungDocs extends define
 
         $doc = str_replace("'", "", $doc);
 
-        $sql = "insert into klassenverwaltung (bereich, datei, klassenbeschreibung, geaendert) values('" . $this->kennung . "','". $this->file . "','" . $doc . "', '".$this->aenderungDatum."')";
+        $sql = "insert into klassenverwaltung (bereich, datei, klassenbeschreibung, geaendert) values('" . $this->kennung . "','". $this->file . "','" . $this->file. " " . $doc . "', '".$this->aenderungDatum."')";
         if (mysqli_query($this->_db_connect, $sql)) {
             $this->_zaehler++;
         } else {
