@@ -51,6 +51,18 @@ class auswertungDocs extends define
     }
 
     /**
+     * Umwandlung eines camelCase Methodenname in Suchwörter
+     *
+     * @param $camelCaseString
+     * @return string
+     */
+    private function fromCamelCase($camelCaseString) {
+        $re = '/(?<=[a-z])(?=[A-Z])/x';
+        $a = preg_split($re, $camelCaseString);
+        return join($a, " " );
+    }
+
+    /**
      * Setzt die Datei
      *
      * @param $file
@@ -156,7 +168,8 @@ class auswertungDocs extends define
 
             // Name der Methode
             if( ($token[0] == 307) and ($flagMethodenName === true) ){
-                $this->docs[] = $klassenName." ".$this->file." ".$token[1];
+                $suchWoerter = $this->fromCamelCase($token[1]);
+                $this->docs[] = $klassenName." ".$this->file." ".$token[1]." ".$suchWoerter;
                 $flagMethodenName = false;
             }
         }
