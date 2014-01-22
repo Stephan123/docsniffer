@@ -59,6 +59,7 @@ class auswertungDocs extends define
     private function fromCamelCase($camelCaseString) {
         $re = '/(?<=[a-z])(?=[A-Z])/x';
         $a = preg_split($re, $camelCaseString);
+		
         return join($a, " " );
     }
 
@@ -150,6 +151,8 @@ class auswertungDocs extends define
         if(is_array($klassenTreffer)){
             if(isset($klassenTreffer[1])){
                 $klassenName = str_replace("_"," ",$klassenTreffer[1]);
+				
+				$klassenNameCamelCase = $this->fromCamelCase($klassenName);
             }
         }
 
@@ -158,7 +161,7 @@ class auswertungDocs extends define
 
             // Php Docs
             if ($token[0] == T_DOC_COMMENT) {
-                $this->docs[] = $klassenName." ".$token[1];
+                $this->docs[] = $klassenName." ".$klassenNameCamelCase." ".$token[1];
             }
 
             // Kennung Methode
