@@ -34,7 +34,7 @@ class index extends define
             $this->_db_datenbank
         );
 
-        // mysqli_set_charset($this->_db_connect, "utf8");
+        mysqli_set_charset($this->_db_connect, "utf8");
 
         return;
     }
@@ -210,6 +210,8 @@ class index extends define
 
         // erstellt SQL
         $sql = $this->ermittelnSqlZurSuche($suchstring);
+		
+		return $sql;
     }
 
     /**
@@ -246,9 +248,6 @@ class index extends define
 		$sql .= " 
 			HAVING treffer > 0
 			ORDER BY treffer DESC";
-			
-			echo $sql;
-			exit();
 
         return $sql;
     }
