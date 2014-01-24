@@ -204,31 +204,12 @@ class index extends define
 	*/
 	public function erstellenSuchString($suchstring)
 	{
-		$suchstring = trim($suchstring);
-		$suchbegriffe = null;
-		$suchbegriffe = explode(" ", $suchstring);
-
-        $gefilterteSuchbegriffe = array();
-        for($i=0; $i < count($suchbegriffe); $i++){
-            if(!empty($suchbegriffe[$i]))
-                $gefilterteSuchbegriffe[] = $suchbegriffe[$i];
-        }
-
         // Kölner Phonetik
-        if($this->flagSearchSound){
-            for($i = 0; $i < count($gefilterteSuchbegriffe); $i++){
-                $gefilterteSuchbegriffe[$i] = $this->cologne_phon($gefilterteSuchbegriffe[$i]);
-            }
-        }
+        if($this->flagSearchSound)
+			$suchstring = $this->cologne_phon($suchstring);
 
         // erstellt SQL
-        if(count($gefilterteSuchbegriffe) > 0){
-            $sql = $this->ermittelnSqlZurSuche($gefilterteSuchbegriffe);
-
-            return $sql;
-        }
-        else
-            return false;
+        $sql = $this->ermittelnSqlZurSuche($suchstring);
     }
 
     /**
@@ -245,42 +226,29 @@ class index extends define
      * @param $gefilterteSuchbegriffe
      * @return bool|string
      */
-    protected function ermittelnSqlZurSuche($gefilterteSuchbegriffe)
+    protected function ermittelnSqlZurSuche($suchstring)
     {
-        // ein oder mehrere Suchbegriffe
-        $sql = "SELECT
-                bereich,
-                datei,
-                geaendert,
-                count(id) as anzahl
-            FROM
-                klassenverwaltung where ";
-
-        for ($i = 0; $i < count($gefilterteSuchbegriffe); $i++) {
-            if (strlen($gefilterteSuchbegriffe[$i]) > 2)
-
-                // Kölner Dialekt
-                if($this->flagSearchSound)
-                    $sql .= "klassenbeschreibung SOUNDEX('" .$gefilterteSuchbegriffe[$i] ."') and ";
-                // normale Suchwörter
-                else
-                    $sql .= "klassenbeschreibung LIKE '%" . $gefilterteSuchbegriffe[$i] . "%' and ";
-        }
-
-        $sql = substr($sql, 0, -4);
-
-
-        if ($this->flagSearchFront)
-            $sql .= " and bereich = 'front'";
+		$sql = "SELECT 
+		  *,
+		  MATCH(`klassenbeschreibung`) AGAINST('".$suchstring."') AS treffer
+		FROM
+		  `klassenverwaltung`";
+		  
+		if ($this->flagSearchFront)
+            $sql .= " where bereich = 'front'";
 
         if ($this->flagSearchAdmin)
-            $sql .= " and bereich = 'admin'";
+            $sql .= " where bereich = 'admin'";
 
         if ($this->flagSearchTool)
-            $sql .= " and bereich = 'tool'";
-
-        $sql .= " group by datei";
-        $sql .= " order by anzahl desc";
+            $sql .= " where bereich = 'tool'";
+		  
+		$sql .= " 
+			HAVING treffer > 0
+			ORDER BY treffer DESC";
+			
+			echo $sql;
+			exit();
 
         return $sql;
     }
