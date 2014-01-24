@@ -80,6 +80,10 @@ class index extends define
     {
         $sql = $this->erstellenSuchString($this->_suchString);
 
+        // wenn keine Suchbegriffe
+        if(empty($sql))
+            return;
+
         if ($result = mysqli_query($this->_db_connect, $sql)) {
             while ($row = mysqli_fetch_assoc($result)) {
                 $this->_result[] = $row;
@@ -89,6 +93,108 @@ class index extends define
         }
 
         return $this;
+    }
+
+    /**
+     * Umwandeln der Suchwörter nach 'Kölner Phonetic'
+     *
+     * @param $word
+     * @return mixed
+     */
+    protected function cologne_phon($word) {
+        /**
+         * @param  string  $word string to be analyzed
+         * @return string  $value represents the Kölner Phonetik value
+         * @access public
+         */
+
+        // prepare for processing
+        $word = strtolower($word);
+        $substitution = array(
+            "ä"=>"a",
+            "ö"=>"o",
+            "ü"=>"u",
+            "ß"=>"ss",
+            "ph"=>"f"
+        );
+
+        foreach ($substitution as $letter => $substitution) {
+            $word = str_replace($letter,$substitution,$word);
+        }
+
+        $len = strlen($word);
+
+        // Rule for exeptions
+        $exceptionsLeading = array(
+            4 => array("ca","ch","ck","cl","co","cq","cu","cx"),
+            8 => array("dc","ds","dz","tc","ts","tz")
+        );
+
+        $exceptionsFollowing = array("sc","zc","cx","kx","qx");
+
+        //Table for coding
+        $codingTable = array(
+            0  => array("a", "e", "i", "j", "o", "u", "y"),
+            1  => array("b", "p"),
+            2  => array("d", "t"),
+            3  => array("f", "v", "w"),
+            4  => array("c", "g", "k", "q"),
+            48 => array("x"),
+            5  => array("l"),
+            6  => array("m", "n"),
+            7  => array("r"),
+            8  => array("c", "s", "z"),
+        );
+
+        for ($i=0; $i<$len; $i++) {
+            $value[$i] = "";
+
+            //Exceptions
+            if ($i == 0 && $word[$i].$word[$i+1] == "cr") {
+                $value[$i] = 4;
+            }
+
+            foreach ($exceptionsLeading as $code => $letters) {
+                if (in_array($word[$i].$word[$i+1], $letters)) {
+                    $value[$i] = $code;
+                }
+            }
+
+            if ($i != 0 && (in_array($word[$i-1].$word[$i], $exceptionsFollowing))) {
+                $value[$i] = 8;
+            }
+
+            // normal encoding
+            if ($value[$i] == "") {
+                foreach ($codingTable as $code => $letters) {
+                    if (in_array($word[$i], $letters)) {
+                        $value[$i] = $code;
+                    }
+                }
+            }
+        }
+
+        // delete double values
+        $len = count($value);
+
+        for ($i=1; $i<$len; $i++) {
+            if ($value[$i] == $value[$i-1]) {
+                $value[$i] = "";
+            }
+        }
+
+        // delete vocals
+        for ($i=1; $i>$len; $i++) {
+            // omitting first characer code and h
+            if ($value[$i] == 0) {
+                $value[$i] = "";
+            }
+        }
+
+        $value = array_filter($value);
+        $value = implode("", $value);
+
+        return $value;
     }
 	
 	/**
@@ -101,56 +207,29 @@ class index extends define
 		$suchstring = trim($suchstring);
 		$suchbegriffe = null;
 		$suchbegriffe = explode(" ", $suchstring);
-		
-		if((is_null($suchbegriffe)) or (count($suchbegriffe) < 2)){
-			$sql = "SELECT 
-					bereich,
-					datei,
-					geaendert,
-					count(id) as anzahl
-				FROM
-					klassenverwaltung ";
 
-            if($this->flagSearchSound)
-                $sql .= "where klassenbeschreibung SOUNDS LIKE '%".$suchstring."%'";
-            else
-				$sql .= "WHERE klassenbeschreibung LIKE '%".$suchstring."%'";
-		}
-		else{
-			$sql = "SELECT 
-					bereich,
-					datei,
-					geaendert,
-					count(id) as anzahl
-				FROM
-					klassenverwaltung where ";
-					
-			for($i=0; $i < count($suchbegriffe); $i++){
-				if(strlen($suchbegriffe[$i]) > 2)
+        $gefilterteSuchbegriffe = array();
+        for($i=0; $i < count($suchbegriffe); $i++){
+            if(!empty($suchbegriffe[$i]))
+                $gefilterteSuchbegriffe[] = $suchbegriffe[$i];
+        }
 
-                    if($this->flagSearchSound)
-                        $sql .= "klassenbeschreibung SOUNDS LIKE '%".$suchstring."%' and ";
-                    else
-                        $sql .= "klassenbeschreibung LIKE '%".$suchstring."%' and ";
-			}
-			
-			$sql = substr($sql, 0 , -4);
-		}
+        // Kölner Phonetik
+        if($this->flagSearchSound){
+            for($i = 0; $i < count($gefilterteSuchbegriffe); $i++){
+                $gefilterteSuchbegriffe[$i] = $this->cologne_phon($gefilterteSuchbegriffe[$i]);
+            }
+        }
 
-        if($this->flagSearchFront)
-            $sql .= " and bereich = 'front'";
+        // erstellt SQL
+        if(count($gefilterteSuchbegriffe) > 0){
+            $sql = $this->ermittelnSqlZurSuche($gefilterteSuchbegriffe);
 
-        if($this->flagSearchAdmin)
-            $sql .= " and bereich = 'admin'";
-
-        if($this->flagSearchTool)
-            $sql .= " and bereich = 'tool'";
-
-        $sql .= " group by datei";
-		$sql .= " order by anzahl desc";
-
-		return $sql;
-	}
+            return $sql;
+        }
+        else
+            return false;
+    }
 
     /**
      * @return array
@@ -159,6 +238,51 @@ class index extends define
     {
 
         return $this->_result;
+    }
+
+    /**
+     * @param $suchstring
+     * @param $gefilterteSuchbegriffe
+     * @return bool|string
+     */
+    protected function ermittelnSqlZurSuche($gefilterteSuchbegriffe)
+    {
+        // ein oder mehrere Suchbegriffe
+        $sql = "SELECT
+                bereich,
+                datei,
+                geaendert,
+                count(id) as anzahl
+            FROM
+                klassenverwaltung where ";
+
+        for ($i = 0; $i < count($gefilterteSuchbegriffe); $i++) {
+            if (strlen($gefilterteSuchbegriffe[$i]) > 2)
+
+                // Kölner Dialekt
+                if($this->flagSearchSound)
+                    $sql .= "klassenbeschreibung SOUNDEX('" .$gefilterteSuchbegriffe[$i] ."') and ";
+                // normale Suchwörter
+                else
+                    $sql .= "klassenbeschreibung LIKE '%" . $gefilterteSuchbegriffe[$i] . "%' and ";
+        }
+
+        $sql = substr($sql, 0, -4);
+
+
+        if ($this->flagSearchFront)
+            $sql .= " and bereich = 'front'";
+
+        if ($this->flagSearchAdmin)
+            $sql .= " and bereich = 'admin'";
+
+        if ($this->flagSearchTool)
+            $sql .= " and bereich = 'tool'";
+
+        $sql .= " group by datei";
+        $sql .= " order by anzahl desc";
+
+        return $sql;
     }
 }
 

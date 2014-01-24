@@ -143,6 +143,7 @@ class auswertungDocs extends define
     {
         $this->docs = array();
         $klassenName = "";
+		$klassenNameCamelCase = '';
 
         // Klassenname
         preg_match('/class\s+(\w+)(.*)?\{/', $this->_source, $klassenTreffer);
