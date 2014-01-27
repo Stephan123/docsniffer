@@ -25,6 +25,8 @@ class index extends define
     private $flagSearchTool = false;
     private $flagSearchSound = false;
 
+    private $treffer = 0;
+
     public function __construct()
     {
         $this->_db_connect = mysqli_connect(
@@ -47,6 +49,14 @@ class index extends define
     public function setSuchstring($suche)
     {
         $this->_suchString = $suche;
+
+        return $this;
+    }
+
+    public function setTreffer($treffer)
+    {
+        $treffer = (int) $treffer;
+        $this->treffer = $treffer;
 
         return $this;
     }
@@ -244,9 +254,9 @@ class index extends define
 
         if ($this->flagSearchTool)
             $sql .= " where bereich = 'tool'";
-		  
+
 		$sql .= " 
-			HAVING treffer > 0
+			HAVING treffer > ".$this->treffer."
 			ORDER BY treffer DESC";
 
         return $sql;
@@ -270,6 +280,11 @@ if (isset($_POST['suche'])) {
     if((array_key_exists('sound', $_POST)) and ($_POST['sound'] == 'sound'))
             $suche->setSearchSound();
 
+    $treffer = (int) $_POST['treffer'];
+    if($treffer > 0)
+        $suche->setTreffer($treffer);
+
+
     $suche->findeDateien();
 
     $datensaetze = $suche->getDatensaetze();
@@ -285,6 +300,7 @@ else {
 <html>
 <head>
     <title></title>
+    <meta charset="utf-8">
 </head>
 <body>
 <table border="1" style="margin-left: 100px;">
@@ -292,6 +308,14 @@ else {
         <td>Suche:</td>
         <td>
             <form method="post" action="index.php"><input type="text" name="suche" value="<?php echo $suche; ?>" style="border: 1px solid green; width: 500px;">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Treffer:
+        </td>
+        <td>
+            <input type="text" name="treffer" style="width: 50px; border: 1px solid green;" value="<?php echo $_POST['treffer']; ?>">
         </td>
     </tr>
     <tr>
@@ -323,7 +347,7 @@ else {
 		<td>&nbsp; Treffer &nbsp;</td>
         <td>&nbsp; Bereich &nbsp;</td>
         <td>&nbsp; Datei &nbsp;</td>
-        <td>&nbsp; ge&auml;ndert &nbsp;</td>
+        <td>&nbsp; eingetragen &nbsp;</td>
         <td>&nbsp; Dokumentation &nbsp; </td>
     </tr>
 <?php
@@ -348,8 +372,8 @@ if (is_array($datensaetze)) {
             $dokumentation = "plugin_" . $datei;
         }
 
-        echo "<tr><td>".$datensaetze[$i]['anzahl']."</td><td>&nbsp; " .$datensaetze[$i]['bereich']. " &nbsp;</td><td>&nbsp; " . $datensaetze[$i]['datei']
-            . " &nbsp;</td><td>&nbsp;".$datensaetze[$i]['geaendert']."&nbsp;</td><td>&nbsp; <a style='text-decoration: none; color: blue;' href='http://localhost/hob/_docs/class-"
+        echo "<tr><td>".$datensaetze[$i]['treffer']."</td><td>&nbsp; " .$datensaetze[$i]['bereich']. " &nbsp;</td><td>&nbsp; " . $datensaetze[$i]['datei']
+            . " &nbsp;</td><td>&nbsp;".$datensaetze[$i]['eingetragen']."&nbsp;</td><td>&nbsp; <a style='text-decoration: none; color: blue;' href='http://localhost/hob/_docs/class-"
             . $dokumentation . ".html' target='_blank'> zur Dokumentation </a> &nbsp;</td></tr> \n";
     }
 }

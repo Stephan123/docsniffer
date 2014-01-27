@@ -1,24 +1,27 @@
 <?php
 /**
- * Klasse zur Auswertung der Doc's der Model in einem Verzeichnis
- *
- *  CREATE TABLE `klassenverwaltung` (
- *    `id` int(10) NOT NULL AUTO_INCREMENT,
- *    `bereich` varchar(50) NOT NULL,
- *    `datei` varchar(50) NOT NULL,
- *    `klassenbeschreibung` text NOT NULL,
- *    `geaendert` datetime NOT NULL,
- *    `eingetragen` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
- *    PRIMARY KEY (`id`),
- *    FULLTEXT KEY `volltext` (`klassenbeschreibung`)
- *  ) ENGINE=MyISAM AUTO_INCREMENT=2629 DEFAULT CHARSET=utf8
- *
- * @author  User
- * @date 20.05.13
- * @time 20:30
- *
- * @package tool
- */
+* Klasse zur Auswertung der Doc's der Model in einem Verzeichnis
+*
+*
+* Create Table
+*
+* CREATE TABLE `klassenverwaltung` (
+*  `id` int(10) NOT NULL AUTO_INCREMENT,
+*  `bereich` varchar(50) NOT NULL,
+*  `datei` varchar(50) NOT NULL,
+*  `klassenbeschreibung` text NOT NULL,
+*  `eingetragen` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+*  PRIMARY KEY (`id`),
+*  FULLTEXT KEY `volltext` (`klassenbeschreibung`)
+* ) ENGINE=MyISAM AUTO_INCREMENT=11625 DEFAULT CHARSET=utf8
+*
+*
+* @author  User
+* @date 20.05.13
+* @time 20:30
+*
+* @package tool
+*/
 
 include_once("define.php");
 include_once("verzeichnisse.php");
@@ -46,6 +49,9 @@ class auswertungDocs extends define
 
         $sql = "truncate table klassenverwaltung";
         mysqli_query($this->_db_connect, $sql);
+
+//        $sql = "update klassenverwaltung set eingetragen = NULL";
+//        mysqli_query($this->_db_connect, $sql);
 
         return;
     }
@@ -218,7 +224,7 @@ class auswertungDocs extends define
 
         $doc = str_replace("'", "", $doc);
 
-        $sql = "insert into klassenverwaltung (bereich, datei, klassenbeschreibung, geaendert) values('" . $this->kennung . "','". $this->file . "','" . $this->file. " " . $doc . "', '".$this->aenderungDatum."')";
+        $sql = "insert into klassenverwaltung (bereich, datei, klassenbeschreibung, eingetragen) values('" . $this->kennung . "','". $this->file . "','" . $this->file. " " . $doc . "', '".$this->aenderungDatum."')";
         if (mysqli_query($this->_db_connect, $sql)) {
             $this->_zaehler++;
         } else {
