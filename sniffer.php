@@ -251,6 +251,7 @@ class auswertungDocs extends define
                         continue;
                     }
 
+					// Anzeige
                     echo $j . ": " . $verzeichnisse[$i]['pfad'] . "/" . $file . "<br>";
 
                     $this->_start($verzeichnisse, $file, $i);

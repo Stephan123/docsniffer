@@ -21,3 +21,7 @@ $verzeichnisse[2]['pfad'] = "c:/xampp/htdocs/hob/library/nook";
 $verzeichnisse[2]['kennung'] = "tool";
 $verzeichnisse[3]['pfad'] = "c:/xampp/htdocs/hob/library/nook/Controller/Plugin";
 $verzeichnisse[3]['kennung'] = "plugin";
+$verzeichnisse[4]['pfad'] = "c:/xampp/htdocs/hob/application/modules/admin/controllers";
+$verzeichnisse[4]['kennung'] = "admin_controllers";
+$verzeichnisse[5]['pfad'] = "c:/xampp/htdocs/hob/application/modules/front/controllers";
+$verzeichnisse[5]['kennung'] = "front_controllers";

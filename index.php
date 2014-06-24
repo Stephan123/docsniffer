@@ -13,6 +13,7 @@
 include_once("define.php");
 
 $datensaetze = false;
+$query = false;
 
 class index extends define
 {
@@ -24,6 +25,8 @@ class index extends define
     private $flagSearchAdmin = false;
     private $flagSearchTool = false;
     private $flagSearchSound = false;
+	
+	protected $query = null;
 
     private $treffer = 0;
 
@@ -232,6 +235,11 @@ class index extends define
 
         return $this->_result;
     }
+	
+	public function getQuery()
+	{
+		return $this->query;
+	}
 
     /**
      * @param $suchstring
@@ -258,6 +266,8 @@ class index extends define
 		$sql .= " 
 			HAVING treffer > ".$this->treffer."
 			ORDER BY treffer DESC";
+			
+		$this->query = $sql;
 
         return $sql;
     }
@@ -286,13 +296,17 @@ if (isset($_POST['suche'])) {
 
 
     $suche->findeDateien();
+	$query = $suche->getQuery();
 
     $datensaetze = $suche->getDatensaetze();
     $suche = $_POST['suche'];
+	
+	
 
 }
 else {
     $suche = "";
+    $_POST['treffer'] = '';
 }
 
 ?>
@@ -309,7 +323,7 @@ else {
         <td>
             <form method="post" action="index.php"><input type="text" name="suche" value="<?php echo $suche; ?>" style="border: 1px solid green; width: 500px;">
         </td>
-    </tr>
+    </tr>	
     <tr>
         <td>
             Treffer:
@@ -380,3 +394,6 @@ if (is_array($datensaetze)) {
 
 ?>
 </table>
+<hr>
+Frage:<br>
+<?php echo $query; ?>

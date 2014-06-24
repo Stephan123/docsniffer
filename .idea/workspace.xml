@@ -6,8 +6,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1d9efc3d-027c-4498-9761-fb7217cdf760" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/docsniffer.iml" afterPath="$PROJECT_DIR$/.idea/docsniffer.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sniffer.php" afterPath="$PROJECT_DIR$/sniffer.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="docsniffer.iws" />
@@ -38,47 +38,7 @@
     </favorites_list>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="index.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="261" column="20" selection-start="5866" selection-end="5866" vertical-scroll-proportion="-6.3461537" vertical-offset="4272" max-vertical-offset="6579">
-              <folding>
-                <element signature="e#6#102#0" expanded="true" />
-                <element signature="n#style#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#form#0;n#td#1;n#tr#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#td#1;n#tr#1;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
-                <marker date="1390809159367" expanded="true" signature="6683:6729" placeholder="..." />
-                <marker date="1390809159367" expanded="true" signature="6683:7834" placeholder="..." />
-                <marker date="1390809159367" expanded="true" signature="6690:6729" placeholder="..." />
-                <marker date="1390809159367" expanded="true" signature="6752:7826" placeholder="..." />
-                <marker date="1390809159367" expanded="true" signature="6752:6767" placeholder="..." />
-                <marker date="1390809159367" expanded="true" signature="6799:7818" placeholder="..." />
-                <marker date="1390809159367" expanded="true" signature="6808:7030" placeholder="..." />
-                <marker date="1390809159367" expanded="true" signature="6808:6871" placeholder="..." />
-                <marker date="1390809159367" expanded="true" signature="6845:7020" placeholder="..." />
-                <marker date="1390809159367" expanded="true" signature="6845:6871" placeholder="..." />
-                <marker date="1390809159367" expanded="true" signature="6897:7015" placeholder="..." />
-                <marker date="1390809159367" expanded="true" signature="7267:7288" placeholder="..." />
-                <marker date="1390809159367" expanded="true" signature="7705:7726" placeholder="..." />
-                <marker date="1390809159367" expanded="true" signature="7897:8232" placeholder="..." />
-                <marker date="1390809159367" expanded="true" signature="7906:8114" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sniffer.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/sniffer.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="0" selection-start="10" selection-end="10" vertical-scroll-proportion="-5.814815" vertical-offset="2703" max-vertical-offset="4947">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -101,8 +61,8 @@
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/define.php" />
         <option value="$PROJECT_DIR$/../hob/application/modules/admin/models/Abfahrtsorte.php" />
-        <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/sniffer.php" />
+        <option value="$PROJECT_DIR$/index.php" />
       </list>
     </option>
   </component>
@@ -111,12 +71,17 @@
       <server host="localhost" name="localhost" />
     </option>
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true">
+    <include_path>
+      <path value="." />
+      <path value="C:\xampp\php\PEAR" />
+    </include_path>
+  </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1688" />
-    <option name="y" value="-8" />
-    <option name="width" value="1696" />
-    <option name="height" value="1066" />
+    <option name="x" value="-4" />
+    <option name="y" value="-4" />
+    <option name="width" value="1688" />
+    <option name="height" value="1028" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -180,80 +145,6 @@
     <property name="FullScreen" value="false" />
     <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
-  </component>
-  <component name="PublishConfig" serverName="docsniffer" serverId="b7e4bc49-bb07-4321-b197-44cf9440e98a">
-    <servers>
-      <server id="0836b128-c872-4424-8405-3b541a49d228">
-        <serverdata />
-      </server>
-      <server id="332ce2e3-c4ca-47db-9d32-fcb61a251df8">
-        <serverdata />
-      </server>
-      <server id="49a40d75-2f43-402a-84dd-0be3eea6fdfa">
-        <serverdata />
-      </server>
-      <server id="4c097d08-c0a2-4511-858e-038f82a494e6">
-        <serverdata />
-      </server>
-      <server id="5fca1896-5b5c-47d6-a8f5-27ce8e2111a3">
-        <serverdata />
-      </server>
-      <server id="72b2e15f-69fd-4b35-bab3-431d1c1178a8">
-        <serverdata />
-      </server>
-      <server id="87fd9abf-5211-4025-9be0-08b77b6a7085">
-        <serverdata />
-      </server>
-      <server id="8d37cc77-b68f-4fc5-b986-62fe8e4a231b">
-        <serverdata />
-      </server>
-      <server id="98090632-a297-4f4e-8a45-83b3d4635bf8">
-        <serverdata />
-      </server>
-      <server id="9e13adec-bb64-46b1-a8fc-2695470a33c1">
-        <serverdata />
-      </server>
-      <server id="aade11f4-ffd8-47b2-b388-3c0b0152d5a0">
-        <serverdata />
-      </server>
-      <server id="aae805f8-c59d-4b2c-b36b-9a47a0d63b50">
-        <serverdata />
-      </server>
-      <server id="aaf85afa-40ec-4203-b2d7-3448aa37750a">
-        <serverdata />
-      </server>
-      <server id="ae569748-d4fd-4eb8-9aea-47c46d085601">
-        <serverdata />
-      </server>
-      <server id="b21a030b-4fe3-4ec8-bb79-1727d541d99d">
-        <serverdata />
-      </server>
-      <server id="b3c02024-6871-4f70-bc78-feff05aa8715">
-        <serverdata />
-      </server>
-      <server id="b3d47368-7926-41ff-9596-87bc36e5db62">
-        <serverdata />
-      </server>
-      <server id="b7e4bc49-bb07-4321-b197-44cf9440e98a">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </server>
-      <server id="bd5c167c-c19e-410e-9d28-f1da50689138">
-        <serverdata />
-      </server>
-      <server id="c4a49e1d-16c8-42d7-b87c-4b2138811b2d">
-        <serverdata />
-      </server>
-      <server id="d0396e63-a4fc-4bf0-b109-1ff628bd0c66">
-        <serverdata />
-      </server>
-      <server id="d5c07e4c-c730-4fdf-b371-8fa595114e9e">
-        <serverdata />
-      </server>
-    </servers>
   </component>
   <component name="RunManager">
     <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -355,8 +246,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1688" y="-8" width="1696" height="1066" extended-state="6" />
-    <editor active="true" />
+    <frame x="-4" y="-4" width="1688" height="1028" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.9141631" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -364,7 +255,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20807834" sideWeight="0.6026345" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.10526316" sideWeight="0.6026345" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.10622711" sideWeight="0.6026345" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39736554" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34271726" sideWeight="0.6008584" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -372,15 +263,20 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32976446" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="PlantUML" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Duplicates" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.249694" sideWeight="0.6026345" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39914164" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.249694" sideWeight="0.6026345" order="2" side_tool="false" content_ui="combo" />
     </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -405,6 +301,22 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="261" column="20" selection-start="5866" selection-end="5866" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6579">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sniffer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="0" selection-start="10" selection-end="10" vertical-scroll-proportion="0.0" vertical-offset="2703" max-vertical-offset="4947">
+          <folding>
+            <element signature="e#6#546#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/define.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="17" column="35" selection-start="313" selection-end="313" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
@@ -441,34 +353,9 @@
         <state line="168" column="0" selection-start="3955" selection-end="3955" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../php/PEAR/PHP/CodeSniffer/Standards/PSR2/Sniffs/Classes/ClassDeclarationSniff.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.6375" vertical-offset="0" max-vertical-offset="0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../php/PEAR/PHP/CodeSniffer/Standards/PSR2/Sniffs/Files/EndFileNewlineSniff.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.28977272" vertical-offset="0" max-vertical-offset="0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../php/phpcs.bat">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="76" selection-start="0" selection-end="716" vertical-scroll-proportion="0.35018727" vertical-offset="0" max-vertical-offset="0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../php/phpmd.bat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="69" selection-start="1534" selection-end="1534" vertical-scroll-proportion="0.29862475" vertical-offset="0" max-vertical-offset="0" />
-      </provider>
-      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/define.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="3" selection-start="112" selection-end="112" vertical-scroll-proportion="0.1734694" vertical-offset="0" max-vertical-offset="882">
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/tokenizer.php">
@@ -481,42 +368,30 @@
         <state line="13" column="0" selection-start="165" selection-end="165" vertical-scroll-proportion="0.039580908" vertical-offset="0" max-vertical-offset="859" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../hob/application/modules/admin/models/Abfahrtsorte.php">
+    <entry file="file://$PROJECT_DIR$/../HOB/application/modules/admin/models/Abfahrtsorte.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="30" column="19" selection-start="789" selection-end="789" vertical-scroll-proportion="0.7183099" vertical-offset="153" max-vertical-offset="4641" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
+    <entry file="file://$PROJECT_DIR$/define.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="261" column="20" selection-start="5866" selection-end="5866" vertical-scroll-proportion="-6.3461537" vertical-offset="4272" max-vertical-offset="6579">
-          <folding>
-            <element signature="e#6#102#0" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#form#0;n#td#1;n#tr#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#td#1;n#tr#1;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
-            <marker date="1390809159367" expanded="true" signature="6683:6729" placeholder="..." />
-            <marker date="1390809159367" expanded="true" signature="6683:7834" placeholder="..." />
-            <marker date="1390809159367" expanded="true" signature="6690:6729" placeholder="..." />
-            <marker date="1390809159367" expanded="true" signature="6752:7826" placeholder="..." />
-            <marker date="1390809159367" expanded="true" signature="6752:6767" placeholder="..." />
-            <marker date="1390809159367" expanded="true" signature="6799:7818" placeholder="..." />
-            <marker date="1390809159367" expanded="true" signature="6808:7030" placeholder="..." />
-            <marker date="1390809159367" expanded="true" signature="6808:6871" placeholder="..." />
-            <marker date="1390809159367" expanded="true" signature="6845:7020" placeholder="..." />
-            <marker date="1390809159367" expanded="true" signature="6845:6871" placeholder="..." />
-            <marker date="1390809159367" expanded="true" signature="6897:7015" placeholder="..." />
-            <marker date="1390809159367" expanded="true" signature="7267:7288" placeholder="..." />
-            <marker date="1390809159367" expanded="true" signature="7705:7726" placeholder="..." />
-            <marker date="1390809159367" expanded="true" signature="7897:8232" placeholder="..." />
-            <marker date="1390809159367" expanded="true" signature="7906:8114" placeholder="..." />
-          </folding>
+        <state line="9" column="3" selection-start="112" selection-end="112" vertical-scroll-proportion="0.18500605" vertical-offset="0" max-vertical-offset="827">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sniffer.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="0" selection-start="10" selection-end="10" vertical-scroll-proportion="-5.814815" vertical-offset="2703" max-vertical-offset="4947">
+        <state line="23" column="2" selection-start="546" selection-end="546" vertical-scroll-proportion="0.48034397" vertical-offset="0" max-vertical-offset="4947">
+          <folding>
+            <element signature="e#6#546#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="295" column="27" selection-start="6685" selection-end="6685" vertical-scroll-proportion="0.22007255" vertical-offset="4680" max-vertical-offset="6443">
           <folding />
         </state>
       </provider>
