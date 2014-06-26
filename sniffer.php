@@ -141,7 +141,7 @@ class auswertungDocs extends define
     }
 
     /**
-     * Findet die Kommentare
+     * Findet die Kommentare und Methodennamen
      *
      * @return auswertungDocs
      */
@@ -174,14 +174,20 @@ class auswertungDocs extends define
             // Kennung Methode
             if($token[0] == T_FUNCTION){
                 $flagMethodenName = true;
+				
+				continue;
             }
-
-            // Name der Methode
-            if( ($token[0] == 307) and ($flagMethodenName === true) ){
-                $suchWoerter = $this->fromCamelCase($token[1]);
-                $this->docs[] = $klassenName." ".$this->file." ".$token[1]." ".$suchWoerter;
-                $flagMethodenName = false;
-            }
+			
+			// Funktionsname
+			if( $flagMethodenName === true ){
+				
+				if(!empty(trim($token[1]))){	
+					$funktionNameCamelCase = $this->fromCamelCase($token[1]);
+					$this->docs[] = $funktionNameCamelCase." ".$klassenNameCamelCase." ".$token[1];
+					
+					$flagMethodenName = false;
+				}
+			}
         }
 
         return $this;

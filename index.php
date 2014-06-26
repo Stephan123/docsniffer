@@ -339,8 +339,8 @@ else {
             &nbsp; Front: &nbsp;
             <input type="checkbox" name="front" value="front">
             &nbsp; Tool: &nbsp;
-            <input type="checkbox" name="tool" value="tool">
-            &nbsp; Soundsuche: &nbsp;
+            <input type="checkbox" name="tool" value="tool"> |
+            &nbsp; Soundsuche: (experimental) &nbsp;
             <input type="checkbox" name="sound" value="sound">
 
         </td>
