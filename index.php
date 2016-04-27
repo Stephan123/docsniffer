@@ -337,7 +337,7 @@ else {
             &nbsp; Admin:
             <input type="checkbox" value="admin" name="admin">
             &nbsp; Front: &nbsp;
-            <input type="checkbox" name="front" value="front">
+            <input type="checkbox" name="front" value="front" checked>
             &nbsp; Tool: &nbsp;
             <input type="checkbox" name="tool" value="tool"> |
             &nbsp; Soundsuche: (experimental) &nbsp;
@@ -385,10 +385,12 @@ if (is_array($datensaetze)) {
         } else {
             $dokumentation = "plugin_" . $datei;
         }
+		
+		
 
         echo "<tr><td>".$datensaetze[$i]['treffer']."</td><td>&nbsp; " .$datensaetze[$i]['bereich']. " &nbsp;</td><td>&nbsp; " . $datensaetze[$i]['datei']
-            . " &nbsp;</td><td>&nbsp;".$datensaetze[$i]['eingetragen']."&nbsp;</td><td>&nbsp; <a style='text-decoration: none; color: blue;' href='http://localhost/hob/_docs/class-"
-            . $dokumentation . ".html' target='_blank'> zur Dokumentation </a> &nbsp;</td></tr> \n";
+            . " &nbsp;</td><td>&nbsp;".$datensaetze[$i]['eingetragen']."&nbsp;</td><td>&nbsp; <a style='text-decoration: none; color: blue;' href='http://localhost/_docs/ao/class-"
+            . $datei . ".html' target='_blank'> zur Dokumentation </a> &nbsp;</td></tr> \n";
     }
 }
 

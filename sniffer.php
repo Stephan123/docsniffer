@@ -41,9 +41,10 @@ class auswertungDocs extends define
 
     public function __construct()
     {
-        $this->_db_connect = mysqli_connect(
-            $this->_db_server, $this->_db_user, $this->_db_passwort, $this->_db_datenbank
-        );
+        $this->_db_connect = mysqli_connect($this->_db_server, $this->_db_user, $this->_db_passwort, $this->_db_datenbank);
+		
+		// echo 'Verbindung: '.$this->_db_connect;
+		// exit();
 
         mysqli_set_charset($this->_db_connect, "utf8");
 
@@ -234,7 +235,7 @@ class auswertungDocs extends define
         if (mysqli_query($this->_db_connect, $sql)) {
             $this->_zaehler++;
         } else {
-            echo $sql . "<hr>";
+            echo 'Fehler: '.$sql . "<hr>";
         }
 
         return $this;

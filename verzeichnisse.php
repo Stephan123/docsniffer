@@ -13,6 +13,12 @@
  */
 
 $verzeichnisse = array();
+
+/**
+* $verzeichnisse[0]['pfad'] = "c:/xampp/htdocs/AO/fileadmin/scripte/reservierung_aenderung/src";
+* $verzeichnisse[0]['kennung'] = "front";
+*/
+
 $verzeichnisse[0]['pfad'] = "c:/xampp/htdocs/hob/application/modules/admin/models";
 $verzeichnisse[0]['kennung'] = "admin";
 $verzeichnisse[1]['pfad'] = "c:/xampp/htdocs/hob/application/modules/front/models";
